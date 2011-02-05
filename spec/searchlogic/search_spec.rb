@@ -69,7 +69,7 @@ describe Searchlogic::Search do
 #
 #    it "should use custom scopes before normalizing" do
 #      User.create(:username => "bjohnson")
-#      User.named_scope :username, lambda { |value| {:conditions => {:username => value.reverse}} }
+#      User.scope :username, lambda { |value| {:conditions => {:username => value.reverse}} }
 #      search1 = User.search(:username => "bjohnson")
 #      search2 = User.search(:username => "nosnhojb")
 #      search1.count.should == 0
@@ -130,7 +130,7 @@ describe Searchlogic::Search do
 #    end
 #
 #    it "should allow setting pre-existing association conditions" do
-#      User.named_scope :uname, lambda { |value| {:conditions => ["users.username = ?", value]} }
+#      User.scope :uname, lambda { |value| {:conditions => ["users.username = ?", value]} }
 #      search = Company.search
 #      search.users_uname = "bjohnson"
 #      search.users_uname.should == "bjohnson"
@@ -449,7 +449,7 @@ describe Searchlogic::Search do
 #    end
 #
 #    it "should delegate to named scopes with arity > 1" do
-#      User.named_scope :paged, lambda {|start, limit| { :limit => limit, :offset => start }}
+#      User.scope :paged, lambda {|start, limit| { :limit => limit, :offset => start }}
 #      User.create(:username => "bjohnson")
 #      search = User.search(:username => "bjohnson")
 #      search.paged(0, 1).count.should == 1
